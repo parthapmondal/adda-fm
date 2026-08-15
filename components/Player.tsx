@@ -49,9 +49,11 @@ export default function Player({ playlistId, mountId }: Props) {
   const [current, setCurrent] = useState(0);
   const [duration, setDuration] = useState(0);
   const [seeking, setSeeking] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
+    setError(null);
 
     loadYouTubeApi().then(() => {
       if (cancelled) return;
@@ -72,6 +74,19 @@ export default function Player({ playlistId, mountId }: Props) {
           onStateChange: (e: any) => {
             // 1 = playing, 2 = paused
             setPlaying(e.data === 1);
+          },
+          onError: (e: any) => {
+            // 2 = bad param/ID, 100 = not found/private, 101/150 = embedding blocked
+            const messages: Record<number, string> = {
+              2: "\u09aa\u09cd\u09b2\u09c7\u09b2\u09bf\u09b8\u09cd\u099f \u0986\u0987\u09a1\u09bf \u09ad\u09c1\u09b2 \u2014 data/playlists.ts \u098f \u0986\u09b8\u09b2 ID \u09ac\u09b8\u09be\u09a8\u0964",
+              100: "\u098f\u0987 \u09aa\u09cd\u09b2\u09c7\u09b2\u09bf\u09b8\u09cd\u099f \u09aa\u09be\u0993\u09af\u09bc\u09be \u09af\u09be\u09af\u09bc\u09a8\u09bf \u2014 \u09b9\u09af\u09bc\u09a4 Private \u0986\u099b\u09c7\u0964",
+              101: "\u098f\u0987 \u09aa\u09cd\u09b2\u09c7\u09b2\u09bf\u09b8\u09cd\u099f\u09c7\u09b0 \u0997\u09be\u09a8 \u098f\u09ae\u09ac\u09c7\u09a1 \u0995\u09b0\u09be \u09af\u09be\u09a8 \u09a8\u09be\u0964",
+              150: "\u098f\u0987 \u09aa\u09cd\u09b2\u09c7\u09b2\u09bf\u09b8\u09cd\u099f\u09c7\u09b0 \u0997\u09be\u09a8 \u098f\u09ae\u09ac\u09c7\u09a1 \u0995\u09b0\u09be \u09af\u09be\u09a8 \u09a8\u09be\u0964",
+            };
+            setError(
+              messages[e.data] ||
+                "\u09aa\u09cd\u09b2\u09c7\u09b2\u09bf\u09b8\u09cd\u099f \u09b2\u09cb\u09a1 \u0995\u09b0\u09a4\u09c7 \u09b8\u09ae\u09b8\u09cd\u09af\u09be \u09b9\u09af\u09bc\u09c7\u099b\u09c7\u0964"
+            );
           },
         },
       });
@@ -130,25 +145,31 @@ export default function Player({ playlistId, mountId }: Props) {
         <DiscArt />
       </div>
       <div className="player__mid">
-        <input
-          className="player__seek"
-          type="range"
-          min={0}
-          max={duration || 0}
-          step={1}
-          value={current}
-          onChange={(e) => {
-            setSeeking(true);
-            onSeek(Number(e.target.value));
-          }}
-          onMouseUp={(e) => commitSeek(Number((e.target as HTMLInputElement).value))}
-          onTouchEnd={(e) => commitSeek(Number((e.target as HTMLInputElement).value))}
-          disabled={!ready}
-        />
-        <div className="player__times">
-          <span>{formatTime(current)}</span>
-          <span>{formatTime(duration)}</span>
-        </div>
+        {error ? (
+          <p className="player__error">{error}</p>
+        ) : (
+          <>
+            <input
+              className="player__seek"
+              type="range"
+              min={0}
+              max={duration || 0}
+              step={1}
+              value={current}
+              onChange={(e) => {
+                setSeeking(true);
+                onSeek(Number(e.target.value));
+              }}
+              onMouseUp={(e) => commitSeek(Number((e.target as HTMLInputElement).value))}
+              onTouchEnd={(e) => commitSeek(Number((e.target as HTMLInputElement).value))}
+              disabled={!ready}
+            />
+            <div className="player__times">
+              <span>{formatTime(current)}</span>
+              <span>{formatTime(duration)}</span>
+            </div>
+          </>
+        )}
       </div>
       <div className="player__controls">
         <button className="player__btn" onClick={() => skip(-1)} aria-label="Previous">
