@@ -53,7 +53,7 @@ button {
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: grayscale(1) contrast(1.05);
+  filter: contrast(1.05);
 }
 
 .stage__scrim {
