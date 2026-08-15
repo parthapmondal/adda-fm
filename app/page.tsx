@@ -10,7 +10,7 @@ export default function Home() {
     <div className="stage">
       <div
         className="stage__bg"
-        style={{ backgroundImage: "url(/images/bg-main.jpg)" }}
+        style={{ backgroundImage: "url(/images/bg-main.png)" }}
       />
       <div className="stage__scrim" />
 
