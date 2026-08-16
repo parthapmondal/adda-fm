@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Trivia } from "@/data/trivia";
+import type { Trivia } from "@/data/genres";
 
 type Props = {
   items: Trivia[];
