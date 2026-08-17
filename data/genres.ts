@@ -113,9 +113,9 @@ export const genres: Genre[] = [
     accent: "#c2665a",
     accentSoft: "rgba(194, 102, 90, 0.35)",
     playlist: {
-      id: "PLARCYH-FMBko",
-      url: "https://youtube.com/playlist?list=PLARCYH-FMBko",
-    },
+  id: "PLARCYH-FMBko",
+  url: "https://youtube.com/playlist?list=PLARCYH-FMBko",
+},
     trivia: [
 {
     bn: "পঞ্চাশ থেকে সত্তরের দশক ধরা হয় বাংলা ছবির গানের স্বর্ণযুগ — হেমন্ত মুখোপাধ্যায়, সন্ধ্যা মুখোপাধ্যায়, মান্না দে, কিশোর কুমারের মতো শিল্পী, আর সলিল চৌধুরী, সুধীন দাশগুপ্তর মতো সুরকারদের হাত ধরে।",
