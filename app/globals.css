@@ -118,43 +118,6 @@ button {
   border-color: var(--accent-soft);
 }
 
-.online-badge {
-  position: absolute;
-  top: 62px;
-  left: 20px;
-  z-index: 5;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-variant-numeric: tabular-nums;
-  color: var(--paper-dim);
-  background: var(--glass);
-  border: 1px solid var(--line);
-  padding: 5px 10px;
-  border-radius: 999px;
-  backdrop-filter: blur(6px);
-}
-
-.online-badge__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #6bcf7a;
-  box-shadow: 0 0 6px #6bcf7a;
-  animation: pulse-dot 2s ease-in-out infinite;
-  flex-shrink: 0;
-}
-
-@keyframes pulse-dot {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
 .disc-link svg {
   width: 22px;
   height: 22px;
@@ -665,14 +628,8 @@ button {
     width: 18px;
     height: 18px;
   }
-  .online-badge {
-    top: 54px;
-    left: 14px;
-    font-size: 10px;
-    padding: 4px 9px;
-  }
   .titleblock {
-    top: 94px;
+    top: 64px;
   }
   .titleblock__title {
     /* The default clamp() has a 52px floor that never shrinks on small
