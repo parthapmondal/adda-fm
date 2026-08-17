@@ -113,8 +113,8 @@ export const genres: Genre[] = [
     accent: "#c2665a",
     accentSoft: "rgba(194, 102, 90, 0.35)",
     playlist: {
-      id: "PLTz4HDY4LRMQ",
-      url: "https://youtube.com/playlist?list=PLTz4HDY4LRMQ",
+      id: "PLARCYH-FMBko",
+      url: "https://youtube.com/playlist?list=PLARCYH-FMBko",
     },
     trivia: [
 {
