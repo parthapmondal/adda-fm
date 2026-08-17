@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Galada, Noto_Sans_Bengali } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { basePath } from "@/lib/basePath";
 import { Analytics } from "@vercel/analytics/next"
@@ -63,6 +64,7 @@ export default function RootLayout({
     <html lang="bn">
       <body className={`${galada.variable} ${notoSansBengali.variable}`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
