@@ -3,7 +3,7 @@ import { Galada, Noto_Sans_Bengali } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { basePath } from "@/lib/basePath";
-import { Analytics } from "@vercel/analytics/next"
+
 
 // Calligraphic display font, used only for the big glowing "আড্ডা" title.
 const galada = Galada({
