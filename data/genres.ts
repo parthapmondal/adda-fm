@@ -24,7 +24,7 @@ export const genres: Genre[] = [
     accentSoft: "rgba(232, 163, 61, 0.35)",
     playlist: {
       id: "PLCgxL-yH0JcM",
-      url: "https://music.youtube.com/playlist?list=PLCgxL-yH0JcM",
+      url: "https://youtube.com/playlist?list=PLCgxL-yH0JcM",
     },
     trivia: [
 {
@@ -69,7 +69,7 @@ export const genres: Genre[] = [
     accentSoft: "rgba(85, 194, 186, 0.35)",
     playlist: {
       id: "PLehjuCKQdN-c",
-      url: "https://music.youtube.com/playlist?list=PLehjuCKQdN-c",
+      url: "https://youtube.com/playlist?list=PLehjuCKQdN-c",
     },
     trivia: [
 {
@@ -114,7 +114,7 @@ export const genres: Genre[] = [
     accentSoft: "rgba(194, 102, 90, 0.35)",
     playlist: {
       id: "PLTz4HDY4LRMQ",
-      url: "https://music.youtube.com/playlist?list=PLTz4HDY4LRMQ",
+      url: "https://youtube.com/playlist?list=PLTz4HDY4LRMQ",
     },
     trivia: [
 {
