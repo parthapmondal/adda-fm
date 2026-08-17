@@ -17,14 +17,14 @@ export type Genre = {
 
 export const genres: Genre[] = [
   {
-    slug: "jibanmukhi",
-    label: "\u099c\u09c0\u09ac\u09a8\u09ae\u09c1\u0996\u09c0",
-    bgImage: "/images/bg-jibanmukhi.png",
+    slug: "90s-classics",
+    label: "90s Classics",
+    bgImage: "/images/bg-90s-classics.png",
     accent: "#e8a33d",
     accentSoft: "rgba(232, 163, 61, 0.35)",
     playlist: {
-      id: "PLehjuCKQdN-c",
-      url: "https://youtube.com/playlist?list=PLehjuCKQdN-c",
+      id: "PLCgxL-yH0JcM",
+      url: "https://music.youtube.com/playlist?list=PLCgxL-yH0JcM",
     },
     trivia: [
 {
@@ -68,8 +68,8 @@ export const genres: Genre[] = [
     accent: "#55c2ba",
     accentSoft: "rgba(85, 194, 186, 0.35)",
     playlist: {
-      id: "PLK3BtVbcwQFg6BGJgHp4CnLuQTW2Okto7",
-      url: "https://youtube.com/playlist?list=PLK3BtVbcwQFg6BGJgHp4CnLuQTW2Okto7",
+      id: "PLehjuCKQdN-c",
+      url: "https://music.youtube.com/playlist?list=PLehjuCKQdN-c",
     },
     trivia: [
 {
@@ -103,6 +103,80 @@ export const genres: Genre[] = [
 {
     bn: "\u09e8\u09e6\u09e6\u09e6-\u098f\u09b0 \u09a6\u09b6\u0995\u09c7 \u09b8\u09b8\u09cd\u09a4\u09be \u0987\u09a8\u09cd\u099f\u09be\u09b0\u09a8\u09c7\u099f \u0986\u09b8\u09be\u09b0 \u09aa\u09b0 \u098f\u0987 \u09ac\u09cd\u09af\u09be\u09a8\u09cd\u09a1\u0997\u09c1\u09b2\u09cb\u09b0 \u0997\u09be\u09a8 \u09a8\u09a4\u09c1\u09a8 \u09aa\u09cd\u09b0\u099c\u09a8\u09cd\u09ae\u09c7\u09b0 \u0995\u09be\u099b\u09c7 \u099b\u09dc\u09bf\u09af\u09bc\u09c7 \u09aa\u09dc\u09c7 \u0986\u09b0\u0993 \u09a6\u09cd\u09b0\u09c1\u09a4\u0964",
     en: "Affordable internet in the 2000s helped this \u201cBangla Band\u201d music reach a new generation far faster than before.",
+  },
+    ],
+  },
+  {
+    slug: "retro",
+    label: "Retro",
+    bgImage: "/images/bg-retro.png",
+    accent: "#c2665a",
+    accentSoft: "rgba(194, 102, 90, 0.35)",
+    playlist: {
+      id: "PLTz4HDY4LRMQ",
+      url: "https://music.youtube.com/playlist?list=PLTz4HDY4LRMQ",
+    },
+    trivia: [
+{
+    bn: "পঞ্চাশ থেকে সত্তরের দশক ধরা হয় বাংলা ছবির গানের স্বর্ণযুগ — হেমন্ত মুখোপাধ্যায়, সন্ধ্যা মুখোপাধ্যায়, মান্না দে, কিশোর কুমারের মতো শিল্পী, আর সলিল চৌধুরী, সুধীন দাশগুপ্তর মতো সুরকারদের হাত ধরে।",
+    en: "The 1950s–70s are considered the golden age of Bengali film music, carried by voices like Hemanta Mukherjee, Sandhya Mukherjee, Manna Dey and Kishore Kumar, and composers like Salil Chowdhury and Sudhin Dasgupta.",
+  },
+{
+    bn: "হেমন্ত মুখোপাধ্যায় আর সন্ধ্যা মুখোপাধ্যায়ের যুগলবন্দি পর্দায় উত্তমকুমার-সুচিত্রা সেনের রোমান্সের কণ্ঠস্বর হয়ে উঠেছিল।",
+    en: "The Hemanta–Sandhya duet became the singing voice behind Uttam Kumar and Suchitra Sen's on-screen romances.",
+  },
+{
+    bn: "১৯৬১ সালের “সপ্তপদী” ছবির “এই পথ যদি না শেষ হয়” গানটি হেমন্ত নিজেই সুর করেছিলেন, লিখেছিলেন গৌরীপ্রসন্ন মজুমদার।",
+    en: "\"Ei Poth Jodi Na Shesh Hoy\" from the 1961 film Saptapadi was composed by Hemanta Mukherjee himself, with lyrics by Gauriprasanna Majumder.",
+  },
+{
+    bn: "মান্না দে সারাজীবনে চার হাজারেরও বেশি গান রেকর্ড করেছিলেন, ফিল্মি গানের পাশাপাশি রবীন্দ্রসঙ্গীতও গেয়েছেন।",
+    en: "Manna Dey recorded over 4,000 songs across his career, singing Rabindra Sangeet alongside his film work.",
+  },
+{
+    bn: "সন্ধ্যা মুখোপাধ্যায় ১৯৬৬ সালে কবি শ্যামল গুপ্তকে বিয়ে করেন, যিনি পরে তাঁর অনেক গানের কথা লিখেছিলেন।",
+    en: "Sandhya Mukherjee married poet Shyamal Gupta in 1966, who went on to write lyrics for many of her songs.",
+  },
+{
+    bn: "সত্যজিৎ রায় নিজে “গুপী গাইন বাঘা বাইন”-এর গান লিখেছিলেন আর সুর করেছিলেন, গেয়েছিলেন অনুপ ঘোষাল।",
+    en: "Satyajit Ray wrote and composed the songs for Goopy Gyne Bagha Byne himself, sung by Anup Ghoshal.",
+  },
+    ],
+  },
+  {
+    slug: "folk",
+    label: "Folk",
+    bgImage: "/images/bg-folk.png",
+    accent: "#7fa05a",
+    accentSoft: "rgba(127, 160, 90, 0.35)",
+    playlist: {
+      id: "PLUEwN0BL8Ijw",
+      url: "https://music.youtube.com/playlist?list=PLUEwN0BL8Ijw",
+    },
+    trivia: [
+{
+    bn: "২০০৫ সালে ইউনেস্কো বাউল গানকে মানবতার মৌখিক ও অধরা ঐতিহ্যের শ্রেষ্ঠ নিদর্শন হিসেবে স্বীকৃতি দেয়।",
+    en: "In 2005, UNESCO recognized Baul songs as a Masterpiece of the Oral and Intangible Heritage of Humanity.",
+  },
+{
+    bn: "বাউল গানের প্রধান বাদ্যযন্ত্র একতারা, দোতারা আর খমক — গানের বিষয় প্রেম, ভক্তি আর প্রকৃতির সঙ্গে একাত্মতা।",
+    en: "Baul music's main instruments are the ektara, dotara and khamak — its songs center on love, devotion, and oneness with nature.",
+  },
+{
+    bn: "লালন ফকির বাউল গানের সবচেয়ে সম্মানিত রচয়িতা, যাঁর গানে বৈষ্ণব আর সুফি ভাবধারার মিশেল দেখা যায়।",
+    en: "Lalon Fakir is Baul music's most revered composer, his songs blending Vaishnava and Sufi philosophy.",
+  },
+{
+    bn: "মাঝিদের গাওয়া ভাটিয়ালি গান নদী আর নৌকাজীবনের কথা বলে — আব্বাসউদ্দিন আহমেদ গ্রামোফোন আর রেডিওর হাত ধরে এই গানকে ঘরে ঘরে পৌঁছে দেন।",
+    en: "Bhatiali, sung by boatmen, speaks of river and boat life — Abbasuddin Ahmed carried it into homes everywhere via gramophone and radio.",
+  },
+{
+    bn: "উত্তরবঙ্গের রংপুর-কোচবিহার অঞ্চল থেকে উঠে আসা ভাওয়াইয়া গানে গ্রামীণ জীবনের বিরহ আর কষ্টের সুর ফুটে ওঠে।",
+    en: "Bhawaiya, rising from North Bengal's Rangpur–Cooch Behar region, carries the melancholy of rural longing and hardship.",
+  },
+{
+    bn: "রবীন্দ্রনাথ ঠাকুর বাউল সুর আর দর্শনে গভীরভাবে প্রভাবিত হয়েছিলেন, তাঁর অনেক গানেই এর ছাপ স্পষ্ট।",
+    en: "Rabindranath Tagore was deeply influenced by Baul melody and philosophy — the imprint shows clearly across many of his own songs.",
   },
     ],
   },
