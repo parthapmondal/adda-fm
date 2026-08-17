@@ -151,7 +151,7 @@ export const genres: Genre[] = [
     accentSoft: "rgba(127, 160, 90, 0.35)",
     playlist: {
       id: "PLUEwN0BL8Ijw",
-      url: "https://music.youtube.com/playlist?list=PLUEwN0BL8Ijw",
+      url: "https://youtube.com/playlist?list=PLUEwN0BL8Ijw",
     },
     trivia: [
 {
