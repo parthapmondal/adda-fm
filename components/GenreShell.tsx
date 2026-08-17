@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import Clock from "@/components/Clock";
 import DiscIcon from "@/components/DiscIcon";
 import GenreSwitcher from "@/components/GenreSwitcher";
-import OnlineCounter from "@/components/OnlineCounter";
 import TriviaStrip from "@/components/Trivia";
 import Player from "@/components/Player";
 import { genres, type Genre } from "@/data/genres";
