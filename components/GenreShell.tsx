@@ -29,7 +29,7 @@ export default function GenreShell({ genre }: Props) {
       <div className="stage__scrim" />
 
       <Clock />
-      <OnlineCounter />
+     
       <DiscIcon href={genre.playlist.url} />
 
       <div className="titleblock">
