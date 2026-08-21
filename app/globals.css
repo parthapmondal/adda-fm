@@ -25,7 +25,7 @@ body {
 }
 
 body {
-  font-family: var(--font-noto-bengali), "Noto Sans Bengali", sans-serif;
+  font-family: var(--font-bengali), "Tiro Bangla", serif;
   overflow: hidden;
 }
 
@@ -118,6 +118,43 @@ button {
   border-color: var(--accent-soft);
 }
 
+.online-badge {
+  position: absolute;
+  top: 62px;
+  left: 20px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  color: var(--paper-dim);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+}
+
+.online-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #6bcf7a;
+  box-shadow: 0 0 6px #6bcf7a;
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
 .disc-link svg {
   width: 22px;
   height: 22px;
@@ -135,7 +172,7 @@ button {
 }
 
 .titleblock__title {
-  font-family: var(--font-title), "Galada", cursive;
+  font-family: var(--font-bengali), "Tiro Bangla", serif;
   font-size: clamp(52px, 10vw, 96px);
   line-height: 1.1;
   margin: 0;
@@ -146,10 +183,9 @@ button {
 }
 
 .titleblock__en {
-  font-family: var(--font-noto-bengali), "Noto Sans Bengali", sans-serif;
+  font-family: var(--font-bengali), "Tiro Bangla", serif;
   font-size: 0.62em;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   vertical-align: middle;
 }
 
@@ -170,82 +206,25 @@ button {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2px;
-  padding: 4px;
-  border-radius: 999px;
-  background: var(--glass);
-  border: 1px solid var(--line);
-  backdrop-filter: blur(6px);
+  gap: 8px;
 }
 
 .toggle a {
   font-size: 13px;
-  padding: 7px 16px;
+  padding: 8px 18px;
   border-radius: 999px;
   color: var(--paper-dim);
-  transition: background 0.2s ease, color 0.2s ease;
+  background: var(--glass);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   white-space: nowrap;
 }
 
 .toggle a[data-active="true"] {
   background: var(--accent);
+  border-color: var(--accent);
   color: #14110c;
-  font-weight: 600;
-}
-
-.trivia {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
-  width: min(820px, 94vw);
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  background: transparent;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 22px 30px;
-  backdrop-filter: blur(6px);
-}
-
-.trivia__body {
-  flex: 1;
-  min-width: 0;
-}
-
-.trivia__bn {
-  font-size: 17px;
-  line-height: 1.65;
-  margin: 0;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
-}
-
-.trivia__en {
-  font-size: 13px;
-  line-height: 1.5;
-  margin: 8px 0 0;
-  color: var(--paper-dim);
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
-}
-
-.trivia__nav {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--paper);
-  transition: background 0.2s ease;
-}
-
-.trivia__nav:hover {
-  background: var(--accent-soft);
 }
 
 .player {
@@ -628,20 +607,19 @@ button {
     width: 18px;
     height: 18px;
   }
+  .online-badge {
+    top: 54px;
+    left: 14px;
+    font-size: 10px;
+    padding: 4px 9px;
+  }
   .titleblock {
-    top: 64px;
+    top: 94px;
   }
   .titleblock__title {
     /* The default clamp() has a 52px floor that never shrinks on small
        phones — that's what was overlapping the clock/disc icons. */
     font-size: clamp(28px, 10vw, 40px);
-  }
-  .trivia {
-    top: auto;
-    bottom: 168px;
-    transform: translateX(-50%);
-    width: 92vw;
-    padding: 16px 18px;
   }
   .player {
     bottom: 18px;
