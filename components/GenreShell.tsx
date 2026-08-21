@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import Clock from "@/components/Clock";
 import DiscIcon from "@/components/DiscIcon";
 import GenreSwitcher from "@/components/GenreSwitcher";
-import TriviaStrip from "@/components/Trivia";
+import OnlineCounter from "@/components/OnlineCounter";
 import Player from "@/components/Player";
 import { genres, type Genre } from "@/data/genres";
 import { basePath } from "@/lib/basePath";
@@ -29,7 +29,7 @@ export default function GenreShell({ genre }: Props) {
       <div className="stage__scrim" />
 
       <Clock />
-     
+      <OnlineCounter />
       <DiscIcon href={genre.playlist.url} />
 
       <div className="titleblock">
@@ -39,7 +39,6 @@ export default function GenreShell({ genre }: Props) {
         <GenreSwitcher genres={genres} active={genre.slug} />
       </div>
 
-      <TriviaStrip items={genre.trivia} />
       <Player playlistId={genre.playlist.id} mountId="yt-player" />
     </div>
   );
