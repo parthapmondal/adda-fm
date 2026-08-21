@@ -16,7 +16,7 @@ export const genres: Genre[] = [
   {
     slug: "90s-classics",
     label: "90s Classics",
-    bgImage: "/images/bg-90s-classics-day.png",
+    bgImage: "/images/bg-90sclassics-day.png",
     accent: "#e8a33d",
     accentSoft: "rgba(232, 163, 61, 0.35)",
     playlist: {
