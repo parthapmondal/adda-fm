@@ -60,7 +60,7 @@ export const genres: Genre[] = [
   {
     slug: "pujo",
     label: "Pujo",
-    bgImage: "/images/bg-pujo.png",
+    bgImage: "/images/bg-retro.png",
     accent: "#c0392b",
     accentSoft: "rgba(192, 57, 43, 0.35)",
     playlist: {
