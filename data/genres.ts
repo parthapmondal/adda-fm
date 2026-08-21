@@ -16,7 +16,7 @@ export const genres: Genre[] = [
   {
     slug: "90s-classics",
     label: "90s Classics",
-    bgImage: "/images/bg-90s-classics.png",
+    bgImage: "/images/bg-90s-classics-day.png",
     accent: "#e8a33d",
     accentSoft: "rgba(232, 163, 61, 0.35)",
     playlist: {
@@ -38,7 +38,7 @@ export const genres: Genre[] = [
   {
     slug: "retro",
     label: "Retro",
-    bgImage: "/images/bg-retro.png",
+    bgImage: "/images/bg-retro-night.png",
     accent: "#c2665a",
     accentSoft: "rgba(194, 102, 90, 0.35)",
     playlist: {
@@ -49,7 +49,7 @@ export const genres: Genre[] = [
   {
     slug: "folk",
     label: "Folk",
-    bgImage: "/images/bg-folk.png",
+    bgImage: "/images/bg-folk-baul.png",
     accent: "#7fa05a",
     accentSoft: "rgba(127, 160, 90, 0.35)",
     playlist: {
