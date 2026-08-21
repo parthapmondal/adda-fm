@@ -7,33 +7,77 @@ import { NextRequest, NextResponse } from "next/server";
 // reads a request body.
 export const dynamic = "force-dynamic";
 
-// Different Redis-on-Vercel setups name these env vars differently
-// depending on how you connected the store — Vercel's own KV/Redis
-// integration typically uses KV_REST_API_URL / KV_REST_API_TOKEN;
-// a raw Upstash connection uses UPSTASH_REDIS_REST_URL /
-// UPSTASH_REDIS_REST_TOKEN. Check both so this works either way.
-const REDIS_URL =
-  process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
-const REDIS_TOKEN =
-  process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
-
 const PRESENCE_KEY = "adda-fm:presence";
 // A tab counts as "online" for this long after its last heartbeat.
 const TTL_MS = 45_000;
 
-export async function POST(req: NextRequest) {
-  // Not configured yet (no Redis env vars found) — respond with a
-  // null count rather than an error, so the client just hides the badge.
-  if (!REDIS_URL || !REDIS_TOKEN) {
-    return NextResponse.json({ count: null });
-  }
+// --- Path A: REST-based Redis (Vercel's old KV product, or a raw
+// Upstash REST connection). Talks over plain fetch(). ---
+const REST_URL =
+  process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+const REST_TOKEN =
+  process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
 
+// --- Path B: raw redis:// connection string — this is what Redis
+// Cloud (via Vercel's Marketplace "Redis" storage) actually gives you.
+// Vercel prefixes it with your store's name (e.g.
+// "addafmstorage_REDIS_URL"), so check the plain name first, then
+// this project's specific one, in case the store gets renamed later. ---
+const RAW_REDIS_URL =
+  process.env.REDIS_URL || process.env.addafmstorage_REDIS_URL;
+
+async function countViaRest(id: string, now: number, cutoff: number) {
+  const pipeline = [
+    ["ZADD", PRESENCE_KEY, String(now), id],
+    ["ZREMRANGEBYSCORE", PRESENCE_KEY, "-inf", String(cutoff)],
+    ["ZCARD", PRESENCE_KEY],
+  ];
+  const res = await fetch(`${REST_URL}/pipeline`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${REST_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(pipeline),
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("redis rest request failed");
+  const data = await res.json();
+  return typeof data?.[2]?.result === "number" ? data[2].result : null;
+}
+
+// Reused across invocations on a warm serverless instance instead of
+// opening a fresh TCP connection on every single request.
+let ioredisClient: import("ioredis").Redis | null = null;
+
+async function countViaRaw(id: string, now: number, cutoff: number) {
+  const { default: Redis } = await import("ioredis");
+  if (!ioredisClient) {
+    ioredisClient = new Redis(RAW_REDIS_URL as string, {
+      maxRetriesPerRequest: 1,
+      connectTimeout: 3000,
+    });
+    ioredisClient.on("error", () => {
+      // Swallowed here — a failed command still rejects below, which
+      // the outer try/catch in POST() handles.
+    });
+  }
+  const pipeline = ioredisClient.pipeline();
+  pipeline.zadd(PRESENCE_KEY, now, id);
+  pipeline.zremrangebyscore(PRESENCE_KEY, "-inf", cutoff);
+  pipeline.zcard(PRESENCE_KEY);
+  const results = await pipeline.exec();
+  const count = results?.[2]?.[1];
+  return typeof count === "number" ? count : null;
+}
+
+export async function POST(req: NextRequest) {
   let id: string | undefined;
   try {
     const body = await req.json();
     id = body?.id;
   } catch {
-    // ignore, handled below
+    // handled below
   }
   if (!id || typeof id !== "string") {
     return NextResponse.json({ error: "missing id" }, { status: 400 });
@@ -42,28 +86,14 @@ export async function POST(req: NextRequest) {
   const now = Date.now();
   const cutoff = now - TTL_MS;
 
-  // One pipelined request: record this heartbeat, drop stale entries,
-  // then count what's left. The REST API accepts an array of Redis
-  // commands as a single pipeline call.
-  const pipeline = [
-    ["ZADD", PRESENCE_KEY, String(now), id],
-    ["ZREMRANGEBYSCORE", PRESENCE_KEY, "-inf", String(cutoff)],
-    ["ZCARD", PRESENCE_KEY],
-  ];
-
   try {
-    const res = await fetch(`${REDIS_URL}/pipeline`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${REDIS_TOKEN}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pipeline),
-      cache: "no-store",
-    });
-    if (!res.ok) throw new Error("redis request failed");
-    const data = await res.json();
-    const count = typeof data?.[2]?.result === "number" ? data[2].result : null;
+    let count: number | null = null;
+    if (REST_URL && REST_TOKEN) {
+      count = await countViaRest(id, now, cutoff);
+    } else if (RAW_REDIS_URL) {
+      count = await countViaRaw(id, now, cutoff);
+    }
+    // Neither pair configured — count stays null, client hides the badge.
     return NextResponse.json({ count });
   } catch {
     return NextResponse.json({ count: null });
